@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Brooke Fox</title>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
+    <script src="js/instaControllers.js"></script>
+  </head>
+
+  <body ng-app="imdb" ng-controller="ImdbController">
+    <div class="container">
+      <h1>Check out the episodes!</h1>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter an TV series title." ng-model="series.title">
+        <span class="input-group-btn">
+          <button class="btn btn-info" type="button" ng-click="sendImdbRequest(series.title)">Search!</button>
+        </span>
+      </div>
+
+      <div id="suggestions">
+        <h4>Try one of these!</h4>
+        <button class="btn btn-info" ng-click="sendImdbRequest('Breaking Bad')">Breaking Bad</button>
+        <button class="btn btn-info" ng-click="sendImdbRequest('Gilmore Girls')">Gilmore Girls</button>
+        <button class="btn btn-info" ng-click="sendImdbRequest('Parks and Recreation')">Parks and Recreation</button>
+        <button class="btn btn-info" ng-click="sendImdbRequest('30 Rock')">30 Rock</button>
+      </div>
+
+      <div class="episodes">
+        <h2 id="title">{{series.title}}</h2>
+        <h2 id="rating">{{series.rating}}</h2>
+        <div>{{series.episodes.length}}, {{series.seasons.length}}</div>
+        <div ng-repeat="episode in series.episodes" class="episode-container">
+          <div class="number" id="number-{{$index}}">{{episode.season}}.{{episode.episode}}</div>
+          <div class="name" id="name-{{$index}}">{{episode.title}}</div>
+          <div class="rating" id="rating-{{$index}}">{{episode.rating}}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
